@@ -10,27 +10,31 @@ This project aims to analyze the Brazilian Soccer Championship, also known as "B
 
 The project was divided into 3 steps:
 
-1. Choose the data
-2. Manipule the data
-3. Use the data
+1. Data Selection
+2. Data Manipulation
+3. Data Analysis and Vizualization
 
 <br>
 
 
-# 1. Choose the data <br>
-The first step was consisted by choose the datasets to be used on the project. The ones that we has choosen are available [here](https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol).
-Once the data has picked, we loaded it on the BigQuery as "raws" tables.
+# 1. Data Selection <br>
+The first step consisted of selecting the datasets to be used in the project. The ones we choose are available [here](https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol).
+After the dataset was selected, it was loaded into Google Sheets for a preliminary verification of data quality and to ensure uniform formatting.
+
+With the initials adjustments done, the tables were lodaded into BigQuery as "raw" tables (bronze layer) to begin the massive transformations.
 
 <br>
 
 # 2. Manipulate the data <br>
-At the second step our goal was to build a datawarehouse to be easier to use the data.
-We decided to build a main data model (datamart) with a center table called `factEvents` and others 5 dimensions called `dimMatch`, `dimPlayer`, `dimArena`, `dimTeams` and `dimCalendar`.
+In the second step, our objective was to build a data warehouse architecture and model all the raw data that had been extracted. The structure was designed based on 3 data marts.
+
+- The main data mart stores the data about events in each match. It comprises a transactional table named `factEvents` and five additional dimensions: `dimMatch`, `dimPlayer`, `dimArena`, `dimTeams` and `dimCalendar`.
+- The second data mart contains data regarding match statistics, with a central table named `factStatistics` that relates to `dimTeams`.
+- The third and final data mart records the final score table for each year and the main table `factScore` is also related exclusively to `dimTeams`.
 
 ![](datamodel_picture.png)
 
-The model entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
-
+The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
 
 
 ### ETL process
@@ -40,13 +44,11 @@ To start, this project was built an ETL process using python and SQL to extract 
 
 To storage the data, was used the BigQuery platform. On it, was created 3 layers to process the data by phase.
 
-👉 **Raw layer (raw_brasileiro_tables)**: This layer contains raw tables from csv files.
+👉 **Bronze layer (raw_brasileiro_tables)**: This layer contains raw tables from Google Sheets files.
 
-👉 **Staging layer (stg_brasileiro_tables)**: This layer contains two intermediary tables used on the `exp_dimJogador` creating process.
+👉 **Silver layer (stg_brasileiro_tables)**: This layer contains two intermediary tables used on the `exp_dimJogador` creating process.
 
-👉 **Exposure layer (exp_brasileiro_tables)**: This layer contains the final tables with curated data ready to be used.
-
->📢 *Some data was cleaned before loading them into the raw layer.*
+👉 **Gold layer (exp_brasileiro_tables)**: This layer contains the final tables with curated data ready to be used.
 
 
 
