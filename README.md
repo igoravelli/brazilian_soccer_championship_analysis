@@ -34,7 +34,7 @@ In the second step, our objective was to build a data warehouse architecture and
 
 Subsequently, the ETL process as well as the final tables will be presented in a detailed manner below.
 
-![](datamodel_picture.png)
+![](./assets/datamodel_picture.png)
 *ERD of brasileirao championship data model*
 
 <br>
@@ -121,7 +121,7 @@ Além dessas hipóteses também foi proposto o seguinte questionamento:
 >
 > Como conclusão temos a distribuição dos gols de cada time pelo minuto da partida, o que nos da uma visão sobre o momento da partida onde cada time marcou gols no ano de 2014
 > 
-> ![](goal_score_distribuition.png)
+> ![](./assets/goal_score_distribuition.png)
 > *distribuição dos gols pelo minuto da partida para cada time*
 
 <br>
