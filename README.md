@@ -25,37 +25,46 @@ With the initials adjustments done, the tables were lodaded into BigQuery as "ra
 
 <br>
 
-# 2. Manipulate the data <br>
+# 2. Data Manipulation <br>
 In the second step, our objective was to build a data warehouse architecture and model all the raw data that had been extracted. The structure was designed based on 3 data marts.
 
-- The main data mart stores the data about events in each match. It comprises a transactional table named `factEvents` and five additional dimensions: `dimMatch`, `dimPlayer`, `dimArena`, `dimTeams` and `dimCalendar`.
-- The second data mart contains data regarding match statistics, with a central table named `factStatistics` that relates to `dimTeams`.
-- The third and final data mart records the final score table for each year and the main table `factScore` is also related exclusively to `dimTeams`.
+- The main data mart stores the data about events in each match. It comprises a transactional table named `factEvents` and five additional dimensions: `dimMatch`, `dimPlayer`, `dimArena`, `dimTeam` and `dimCalendar`.
+- The second data mart contains data regarding match statistics, with a central table named `factStatistics` that relates to `dimTeam` and `dimMatch`.
+- The third and final data mart records the final score table for each year and the main table `factScore` is also related to `dimTeam`.
+
+Subsequently, the ETL process as well as the final tables will be presented in a detailed manner below.
 
 ![](datamodel_picture.png)
-
 The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
 
 
 ### ETL process
-To start, this project was built an ETL process using python and SQL to extract the data from the csv files, manipulate them and create a star schema data model to be used to answer the business questions.
+After the completion of the extraction phase, the data transformation step was initiated. For this stage, an ETL process was developed using SQL to establish the data warehousing solution. Given the structure of the raw data, the dimensional modeling "star schema" was chosen as the optimal option to address the business questions.
+
+For data storage and the execution of all transformation steps, the BigQuery platform was employed. Within BigQuery, three layers were created to process the data according to the phase and data application.
+
+👉 **Bronze layer**: This layer contains raw tables from Google Sheets files.
+
+👉 **Silver layer**: This layer contains two intermediary tables used specifically on the `dimPlayer` creation process.
+
+👉 **Gold layer**: This layer contains the final data warehouse tables (fact-s and dim´s) with curated data ready to be used.
 
 @TODO [UM DESENHO DO PROCESSO DE ETL]
 
-To storage the data, was used the BigQuery platform. On it, was created 3 layers to process the data by phase.
-
-👉 **Bronze layer (raw_brasileiro_tables)**: This layer contains raw tables from Google Sheets files.
-
-👉 **Silver layer (stg_brasileiro_tables)**: This layer contains two intermediary tables used on the `exp_dimJogador` creating process.
-
-👉 **Gold layer (exp_brasileiro_tables)**: This layer contains the final tables with curated data ready to be used.
-
-
+@TODO [FALAR SOBRE OS ACESSOS AO BIGQUERY - TABELAS DO DW E QUERIES]
 
 ### Data model
-This data model contains 5 dimensions and 1 fact.
+As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the data warehouse will follow.
 
-@TODO [EXPLICACAO DE CADA TABELA E COLUNA]
+⚽ `dimMatch`:
+🏃🏽‍♂️ `dimPlayer`:
+🏟 `dimArena`:
+🛡 `dimTeam`:
+📅 `dimCalendar`:
+
+🥅 `factEvents`:
+🔢 `factStatistics`:
+🏅 `factScore`:
 
 - Explicar sobre os tipos de scd utilizados
     - dimTime - a partir da tabela brasileiro_full e do os id´s de partidas como sat_id e end_id
