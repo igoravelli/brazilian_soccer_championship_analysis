@@ -57,13 +57,19 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the data warehouse will follow.
 
 ⚽ `dimMatch`:
+
 🏃🏽‍♂️ `dimPlayer`:
+
 🏟 `dimArena`:
+
 🛡 `dimTeam`:
+
 📅 `dimCalendar`:
 
 🥅 `factEvents`:
+
 🔢 `factStatistics`:
+
 🏅 `factScore`:
 
 - Explicar sobre os tipos de scd utilizados
