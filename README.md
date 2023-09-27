@@ -33,6 +33,9 @@ In the second step, our objective was to build a data warehouse architecture and
 - The third and final data mart records the final score table for each year and the main table `factScore` is also related exclusively to `dimTeams`.
 
 ![](datamodel_picture.png)
+*ERD of brasileirao championship data model*
+
+<br>
 
 The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
 
@@ -65,4 +68,53 @@ This data model contains 5 dimensions and 1 fact.
 <br>
 
 
-# 3. Use the data
+# 3. Data Analysis and Vizualization
+Na terceira etapa do projeto foi feita análises dos dados sobre o brasileirão utilizando o modelo de dados criado na etapa anterior.
+
+Para tal, foram levantadas hipóteses e, utilizando o modelo de dados, estas hipóteses foram validadas possuindo como resultado sua confirmação ou sua rejeição, ou seja, foi verificado se cada afirmação é verdadeira ou falsa.
+
+Das hipóteses analisadas se destacam as seguintes afirmações:
+  
+- 📌 *Times mandantes ganham com mais frequência*
+- 📌 *Times mandantes tomam menos cartões* 
+- 📌 *Times com jogador expulso no primeiro tempo perdem o jogo com mais frequência*
+- 📌 *O 2º turno do campeonato (rodada 29 em diante) tende a exibir partidas com mais eventos (gols e cartões)*
+- 📌 *Times campeões tem maior precisão de passe*
+
+Para realizar as análises propostas foi utilizado o Google Colab como ferramenta de processamento e visualização, utilizando Python como linguagem e fazendo a conexão com o BigQuery diretamente.
+
+> 📘 **O _Google Colab_ foi escolhido por ser a única ferramenta gratuita que possibilita a fácil conexão entre seus notebooks e o BigQuery, sendo o último onde o modelo de dados está**
+
+Abaixo estão os notebooks utilizados:
+
+- [Times mandantes ganham com mais frequência](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/readme-file/Win_frequency_in_home_matches.ipynb)
+- [Times mandantes tomam menos cartões](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Average_of_cards_in_home_team_matches.ipynb)
+- [Times com jogador expulso no primeiro tempo perdem o jogo com mais frequência](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Number_of_matches_with_expelled_players.ipynb)
+- [Times campeões tem maior precisão de passe](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Teams_accuracy_pass.ipynb)
+- [O 2 turno do campeonato (rodada 29 em diante) tende a exibir partidas com mais eventos (gols e cartões)](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Events_frequency_along_the_turns_.ipynb)
+
+
+⏩ Ao final de cada notebook estão conclusões sobre a análise feita
+
+<br>
+
+Além dessas hipóteses também foi proposto o seguinte questionamento:
+> 📢 Em qual faixa do tempo os gols da vitória (ou todos os gols) são marcados para cada time? Esse perfil muda quando a vitória é de um mandante ou de um visitante?
+> 
+> 🔎 [notebook com a análise](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Goal_scoring_distribution_by_team.ipynb)
+>
+> Como conclusão temos a distribuição dos gols de cada time pelo minuto da partida, o que nos da uma visão sobre o momento da partida onde cada time marcou gols no ano de 2014
+> 
+> ![](goal_score_distribuition.png)
+> *distribuição dos gols pelo minuto da partida para cada time*
+
+<br>
+
+# References
+KIMBALL, Ralph. The data warehouse toolkit: practical techniques for building dimensional data warehouses. John Wiley & Sons, Inc., 1996.
+
+MUNZNER, Tamara et al. Exploratory data analysis.
+
+Google Cloud. (2023). Google BigQuery Documentation. Retrieved from (https://cloud.google.com/bigquery/docs)
+
+Google. (2023). Google Colab Documentation. Retrieved from (https://colab.research.google.com/notebooks/intro.ipynb)
