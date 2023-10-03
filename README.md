@@ -28,7 +28,7 @@ With the initials adjustments done, the tables were lodaded into BigQuery as "ra
 # 2. Data Manipulation <br>
 In the second step, our objective was to build a data warehouse architecture and model all the raw data that had been extracted. The structure was designed based on 3 data marts.
 
-- The main data mart stores the data about events in each match. It comprises a transactional table named `factEvents` and five additional dimensions: `dimMatch`, `dimPlayer`, `dimArena`, `dimTeam` and `dimCalendar`.
+- The main data mart stores the data about events in each match. It comprises a transactional table named `factEvents` and five additional dimensions: `dimMatch`, `dimPlayer`, `dimStadium`, `dimTeam` and `dimCalendar`.
 - The second data mart contains data regarding match statistics, with a central table named `factStatistics` that relates to `dimTeam` and `dimMatch`.
 - The third and final data mart records the final score table for each year and the main table `factScore` is also related to `dimTeam`.
 
@@ -60,21 +60,21 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 ### Data model
 As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the data warehouse will follow.
 
-⚽ `dimMatch`:
+⚽ `dimMatch`: Information about the matches such as the winner team, stadium and match date.
 
-🏃🏽‍♂️ `dimPlayer`:
+🏃🏽‍♂️ `dimPlayer`: Table containing data about each identified player. 'Player_name', 'Position' and 'Jersey_number' are some of the columns in this table.
 
-🏟 `dimArena`:
+🏟 `dimStadium`: Store data about the stadium names and locations.
 
-🛡 `dimTeam`:
+🛡 `dimTeam`: This is one of the tables that uses Slowly Changing Dimensions (SCD) due to coach changes over time.
 
-📅 `dimCalendar`:
+📅 `dimCalendar`: The last dimension is a table that stores date-related data for time-based analysis.
 
-🥅 `factEvents`:
+🥅 `factEvents`: This is the main table table in the model. It´s related to all dimensional tables and store all the goals, red cards and yellow cards and when they occurred.
 
-🔢 `factStatistics`:
+🔢 `factStatistics`: Some statistical reports can be extracted from here, such as ball possession, passing accuracy and offsides.
 
-🏅 `factScore`:
+🏅 `factScore`: The third fact table store the final league position and score, as well as the number of wins separated by home and away mathces.
 
 - Explicar sobre os tipos de scd utilizados
     - dimTime - a partir da tabela brasileiro_full e do os id´s de partidas como sat_id e end_id
