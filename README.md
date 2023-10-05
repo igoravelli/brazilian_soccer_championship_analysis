@@ -85,44 +85,45 @@ As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tabl
 
 
 # 3. Data Analysis and Vizualization
-Na terceira etapa do projeto foi feita análises dos dados sobre o brasileirão utilizando o modelo de dados criado na etapa anterior.
+In the third phase of the project, the data analysis itself was made using the data model that had been created previously.
 
-Para tal, foram levantadas hipóteses e, utilizando o modelo de dados, estas hipóteses foram validadas possuindo como resultado sua confirmação ou sua rejeição, ou seja, foi verificado se cada afirmação é verdadeira ou falsa.
+To do that was raised some hyphotesis to be validated outputting on acceptance or rejection. 
 
-Das hipóteses analisadas se destacam as seguintes afirmações:
-  
-- 📌 *Times mandantes ganham com mais frequência*
-- 📌 *Times mandantes tomam menos cartões* 
-- 📌 *Times com jogador expulso no primeiro tempo perdem o jogo com mais frequência*
-- 📌 *O 2º turno do campeonato (rodada 29 em diante) tende a exibir partidas com mais eventos (gols e cartões)*
-- 📌 *Times campeões tem maior precisão de passe*
+About the hypothesis, some that are highlighted are:
 
-Para realizar as análises propostas foi utilizado o Google Colab como ferramenta de processamento e visualização, utilizando Python como linguagem e fazendo a conexão com o BigQuery diretamente.
-
-> 📘 **O _Google Colab_ foi escolhido por ser a única ferramenta gratuita que possibilita a fácil conexão entre seus notebooks e o BigQuery, sendo o último onde o modelo de dados está**
-
-Abaixo estão os notebooks utilizados:
-
-- [Times mandantes ganham com mais frequência](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/readme-file/Win_frequency_in_home_matches.ipynb)
-- [Times mandantes tomam menos cartões](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Average_of_cards_in_home_team_matches.ipynb)
-- [Times com jogador expulso no primeiro tempo perdem o jogo com mais frequência](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Number_of_matches_with_expelled_players.ipynb)
-- [Times campeões tem maior precisão de passe](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Teams_accuracy_pass.ipynb)
-- [O 2 turno do campeonato (rodada 29 em diante) tende a exibir partidas com mais eventos (gols e cartões)](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Events_frequency_along_the_turns_.ipynb)
+- 📌 *Home teams win more frequently*
+- 📌 *Home teams receive fewer cards*
+- 📌 *Teams with an expelled player in the first half have more chance to lose the game*
+- 📌 *Champions teams have more pass accuracy*
+- 📌 *The matches of the second turn have more events (goals and cards) than the matches of the first*
 
 
-⏩ Ao final de cada notebook estão conclusões sobre a análise feita
+To accomplish the analysis, some ETL processes were, all of them written in Python, using Google Colab as the processing tool, and to get the data, a direct connection between Colab and BigQuery was made using its native integration.
+
+> 📘 **_Google Colab_ was chosen because of its easy connection between notebooks and BigQuery, being the latter where the data is.**
+
+Below are the notebooks used to do the data analysis:
+
+- [Home teams win more frequently](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/readme-file/Win_frequency_in_home_matches.ipynb)
+- [Home teams receive fewer cards](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Average_of_cards_in_home_team_matches.ipynb)
+- [Teams with an expelled player in the first half have more chance to lose the game](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Number_of_matches_with_expelled_players.ipynb)
+- [Champions teams have more pass accuracy](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Teams_accuracy_pass.ipynb)
+- [The matches of the second turn have more events (goals and cards) than the matches of the first](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Events_frequency_along_the_turns_.ipynb)
+
+
+⏩ There is a conclusion of the analysis by the end of each notebook
 
 <br>
 
-Além dessas hipóteses também foi proposto o seguinte questionamento:
-> 📢 Em qual faixa do tempo os gols da vitória (ou todos os gols) são marcados para cada time? Esse perfil muda quando a vitória é de um mandante ou de um visitante?
+Besides the hypothesis mentioned before, also was proposed the following discussion:
+> 📢 Is there a pattern about when (during the game) each winning team scores? Does the landscape change when the winner is the home team?
 > 
-> 🔎 [notebook com a análise](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Goal_scoring_distribution_by_team.ipynb)
+> 🔎 [notebook with the analysis](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Goal_scoring_distribution_by_team.ipynb)
 >
-> Como conclusão temos a distribuição dos gols de cada time pelo minuto da partida, o que nos da uma visão sobre o momento da partida onde cada time marcou gols no ano de 2014
+> As an output of this discussion, the following chart shows the goals score distribution throughout the match by team in 2014.
 > 
 > ![](./assets/goal_score_distribuition.png)
-> *distribuição dos gols pelo minuto da partida para cada time*
+> *goals score distribution throughout the match by team in 2014*
 
 <br>
 
