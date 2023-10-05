@@ -57,6 +57,11 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 
 @TODO [FALAR SOBRE OS ACESSOS AO BIGQUERY - TABELAS DO DW E QUERIES]
 
+@TODO: [FAZER IMAGEM DE SCHEMA]
+
+@TODO: [COLOCAR IMAGENS DAS TABELAS]
+
+
 ### Data model
 As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the data warehouse will follow.
 
@@ -74,11 +79,32 @@ As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tabl
 
 🔢 `factStatistics`: Some statistical reports can be extracted from here, such as ball possession, passing accuracy and offsides.
 
-🏅 `factScore`: The third fact table store the final league position and score, as well as the number of wins separated by home and away mathces.
+🏅 `factScore`: The third fact table store the final league position and score, as well as the number of wins separated by home and away matches.
 
-- Explicar sobre os tipos de scd utilizados
-    - dimTime - a partir da tabela brasileiro_full e do os id´s de partidas como sat_id e end_id
-    - dimJogador - a partir das tabelas de stg, que por sua vez utilizaram as tabelas de eventos e gols. Porém, como apenas a tabela de eventos possuía posição e nº da camisa, o scd criado utilizado como end_id, o valor de start_id-1 (subtração) da linha seguinte
+### Slowly Changing Dimensions (SCD)
+
+In this project, some information exhibited a historical behavior, necessitating the storage of not only the latest data, but also all the information from the past associated with the analyzed instance. For this reason, SCD technique was applied in two dimensional tables, `dimTeam`and `dimPlayer`. Before explaining how SCD was applied, it is interesting to briefly define what the concept means. 
+
+"Slowly Changing Dimension" is used in data modeling to structure how information evolves over time within a data warehouse or business intelligence system. The first decision to be made is determining how historical information in data will be maintained so that analyses can accurately reflect the reality over time. There are basically three main types of SCDs:
+
+- SCD Type 1 - Overwrite:
+
+In this type, old information is simply replaced with new information when an update occurs. This means that historical data is not preserved, and only the most recent version of the data is retained.
+
+- SCD Type 2 - Add a New Row:
+
+In this type, a new record is added whenever a change in data occurs. This means that you maintain a history of all changes.
+To track the historical data, additional columns like 'start_date' and 'end_date' are crated to keep up with the changes over time.
+
+- SCD Type 3 - Add History Fields:
+
+In this type, an intermediate approach is used. Instead of maintaining a complete history of all changes, only specific fields are kept to track the most recent changes.
+
+Given the possibility to hold all the historical data, as well as the appliance in multiple scenarios, the better fit for the project was 'SCD Type 2'. As highlighted earlier, two tables store historical data:
+
+🛡 `dimTeam`: The columns 'start_date' and 'end_date' were transformed into 'start_id' and 'end_id' since the data source used was based on the matches and their IDs. This makes it possible to specifically identify the coach in charge in a particular match.
+
+🏃🏽‍♂️ `dimPlayer`: In this table, the time reference was also the match ID, and the data source was mainly the silver layer tables. The historical informations tha can be found includes the player's specific jersey number, position, and club in a given match.
 
 
 <br>
