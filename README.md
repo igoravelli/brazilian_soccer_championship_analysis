@@ -35,15 +35,18 @@ In the second step, our objective was to build a data warehouse architecture and
 Subsequently, the ETL process as well as the final tables will be presented in a detailed manner below.
 
 ![](./assets/datamodel_picture.png)
-*ERD of brasileirao championship data model*
+*Entity Relationship Diagram (ERD) of brasileirao_championship data model*
 
 <br>
 
-The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
+@TODO[AINDA PRECISA DESSE LINK?]The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
 
+@TODO: [REVISAR TODO O README]
+
+@TODO: [COLOCAR IMAGENS DAS TABELAS]
 
 ### ETL process
-After the completion of the extraction phase, the data transformation step was initiated. For this stage, an ETL process was developed using SQL to establish the data warehousing solution. Given the structure of the raw data, the dimensional modeling "star schema" was chosen as the optimal option to address the business questions.
+After the completion of the extraction phase, the data transformation step is initiated. For this stage, an ETL process was developed using SQL to establish the data warehousing solution. Given the structure of the raw data, the dimensional modeling "star schema" was chosen as the optimal option to address the business questions.
 
 For data storage and the execution of all transformation steps, the BigQuery platform was employed. Within BigQuery, three layers were created to process the data according to the phase and data application.
 
@@ -51,15 +54,15 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 
 👉 **Silver layer**: This layer contains two intermediary tables used specifically on the `dimPlayer` creation process.
 
-👉 **Gold layer**: This layer contains the final data warehouse tables (fact-s and dim´s) with curated data ready to be used.
+👉 **Gold layer**: This layer contains the final data warehouse (fact and dim tables) with curated data ready to be used.
+
+Below, the solution architecture is presented, which includes all the steps and platforms that were used in the project's development. The image also illustrates the final step involving Google Colab, which will be further explained in Section 3 (*Data Analysis and Visualization*) of this document.
 
 @TODO [UM DESENHO DO PROCESSO DE ETL]
 
-@TODO [FALAR SOBRE OS ACESSOS AO BIGQUERY - TABELAS DO DW E QUERIES]
+*Solution Architecture Overview*
 
-@TODO: [FAZER IMAGEM DE SCHEMA]
-
-@TODO: [COLOCAR IMAGENS DAS TABELAS]
+As a closing note in this section, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
 
 
 ### Data model
