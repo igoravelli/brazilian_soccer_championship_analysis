@@ -43,8 +43,6 @@ Subsequently, the ETL process as well as the final tables will be presented in a
 
 @TODO: [REVISAR TODO O README]
 
-@TODO: [COLOCAR IMAGENS DAS TABELAS]
-
 ### ETL process
 After the completion of the extraction phase, the data transformation step is initiated. For this stage, an ETL process was developed using SQL to establish the data warehousing solution. Given the structure of the raw data, the dimensional modeling "star schema" was chosen as the optimal option to address the business questions.
 
@@ -62,7 +60,7 @@ Below, the solution architecture is presented, which includes all the steps and 
 
 *Solution Architecture Overview*
 
-As a closing note in this section, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
+As a closing note in this theme, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
 
 
 ### Data model
@@ -83,6 +81,8 @@ As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tabl
 🔢 `factStatistics`: Some statistical reports can be extracted from here, such as ball possession, passing accuracy and offsides.
 
 🏅 `factScore`: The third fact table store the final league position and score, as well as the number of wins separated by home and away matches.
+
+[Here](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/assets/tables-samples), some samples of the tables mentioned above have been stored to provide a better understanding of the final result and the structure of the data warehouse.
 
 ### Slowly Changing Dimensions (SCD)
 
