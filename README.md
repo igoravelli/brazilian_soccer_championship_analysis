@@ -1,10 +1,5 @@
 # Brazilian Soccer Championship Analysis
 ## Summary
-> O que é
-> 
-> O que foi usado (ferramentas e conceitos)
->
-> Funções de cada um no projeto
 
 This project aims to analyze the Brazilian Soccer Championship, also known as "Brasileirão", which is the top-tier professional football league in Brazil. The analysis is based on the historical data of the championship, including match results, player statistics, and other relevant factors.
 
@@ -12,16 +7,16 @@ The project was divided into 3 steps:
 
 1. Data Selection
 2. Data Manipulation
-3. Data Analysis and Vizualization
+3. Data Analysis and Visualization
 
 <br>
 
 
 # 1. Data Selection <br>
-The first step consisted of selecting the datasets to be used in the project. The ones we choose are available [here](https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol).
+The first step consisted of selecting the datasets to be used in the project. The ones we chose are available [here](https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol).
 After the dataset was selected, it was loaded into Google Sheets for a preliminary verification of data quality and to ensure uniform formatting.
 
-With the initials adjustments done, the tables were lodaded into BigQuery as "raw" tables (bronze layer) to begin the massive transformations.
+With the initial adjustments done, the tables were loaded into BigQuery as "raw" tables (bronze layer) to begin the massive transformations.
 
 <br>
 
@@ -32,19 +27,17 @@ In the second step, our objective was to build a data warehouse architecture and
 - The second data mart contains data regarding match statistics, with a central table named `factStatistics` that relates to `dimTeam` and `dimMatch`.
 - The third and final data mart records the final score table for each year and the main table `factScore` is also related to `dimTeam`.
 
-Subsequently, the ETL process as well as the final tables will be presented in a detailed manner below.
+The marts and their relationships can be better visualized in the image. Also, it's possible to get more information about the columns of each table.
 
 ![](./assets/datamodel_picture.png)
 *Entity Relationship Diagram (ERD) of brasileirao_championship data model*
 
+Additionally, the ETL process as well as the final tables will be presented in detail in the following sections.
+
 <br>
 
-@TODO[AINDA PRECISA DESSE LINK?]The entire model is represented [here](https://drive.google.com/file/d/1ejlKub_w4EP8wMyLYU0ykyO7PT3yaIc9/view?usp=sharing).
-
-@TODO: [REVISAR TODO O README]
-
 ### ETL process
-After the completion of the extraction phase, the data transformation step is initiated. For this stage, an ETL process was developed using SQL to establish the data warehousing solution. Given the structure of the raw data, the dimensional modeling "star schema" was chosen as the optimal option to address the business questions.
+After the completion of the extraction phase, the data transformation step is initiated. For this stage, an ETL process was developed using SQL to establish the data warehouse solution. Given the structure of the raw data, the dimensional modeling technique "star schema" was chosen as the optimal option to address the business questions.
 
 For data storage and the execution of all transformation steps, the BigQuery platform was employed. Within BigQuery, three layers were created to process the data according to the phase and data application.
 
@@ -56,15 +49,14 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 
 Below, the solution architecture is presented, which includes all the steps and platforms that were used in the project's development. The image also illustrates the final step involving Google Colab, which will be further explained in Section 3 (*Data Analysis and Visualization*) of this document.
 
-@TODO [UM DESENHO DO PROCESSO DE ETL]
-
+![](./assets/solution_architecture.jpg)
 *Solution Architecture Overview*
 
 As a closing note in this theme, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
 
 
 ### Data model
-As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the data warehouse will follow.
+As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the gold layer will follow.
 
 ⚽ `dimMatch`: Information about the matches such as the winner team, stadium and match date.
 
@@ -72,15 +64,15 @@ As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tabl
 
 🏟 `dimStadium`: Store data about the stadium names and locations.
 
-🛡 `dimTeam`: This is one of the tables that uses Slowly Changing Dimensions (SCD) due to coach changes over time.
+🛡 `dimTeam`: This is one of the tables that uses Slowly Changing Dimensions (SCD). It holds information, for example, about coach changes over time and the stadium where the team plays in home matches.
 
 📅 `dimCalendar`: The last dimension is a table that stores date-related data for time-based analysis.
 
-🥅 `factEvents`: This is the main table table in the model. It´s related to all dimensional tables and store all the goals, red cards and yellow cards and when they occurred.
+🥅 `factEvents`: This is the main table in the model. It's related to all dimensional tables and store all the goal, red card and yellow card events and when they occurred.
 
 🔢 `factStatistics`: Some statistical reports can be extracted from here, such as ball possession, passing accuracy and offsides.
 
-🏅 `factScore`: The third fact table store the final league position and score, as well as the number of wins separated by home and away matches.
+🏅 `factScore`: The third fact table stores the final league position and score, as well as the number of wins separated by home and away matches or each team.
 
 [Here](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/assets/tables-samples), some samples of the tables mentioned above have been stored to provide a better understanding of the final result and the structure of the data warehouse.
 
@@ -107,18 +99,18 @@ Given the possibility to hold all the historical data, as well as the appliance 
 
 🛡 `dimTeam`: The columns 'start_date' and 'end_date' were transformed into 'start_id' and 'end_id' since the data source used was based on the matches and their IDs. This makes it possible to specifically identify the coach in charge in a particular match.
 
-🏃🏽‍♂️ `dimPlayer`: In this table, the time reference was also the match ID, and the data source was mainly the silver layer tables. The historical informations tha can be found includes the player's specific jersey number, position, and club in a given match.
+🏃🏽‍♂️ `dimPlayer`: In this table, the time reference was also the match ID, and the data source was mainly the silver layer tables. The historical informations that can be found includes the player's specific jersey number, position, and club in a given match.
 
 
 <br>
 
 
-# 3. Data Analysis and Vizualization
-In the third phase of the project, the data analysis itself was made using the data model that had been created previously.
+# 3. Data Analysis and Visualization
+In the third phase of the project, the data analysis itself was conducted using the previously created data model.
 
-To do that was raised some hyphotesis to be validated outputting on acceptance or rejection. 
+To do this, several hypotheses were formulated and tested for acceptance or rejection.
 
-About the hypothesis, some that are highlighted are:
+Among the highlighted hypotheses are:
 
 - 📌 *Home teams win more frequently*
 - 📌 *Home teams receive fewer cards*
@@ -127,11 +119,11 @@ About the hypothesis, some that are highlighted are:
 - 📌 *The matches of the second turn have more events (goals and cards) than the matches of the first*
 
 
-To accomplish the analysis, some ETL processes were, all of them written in Python, using Google Colab as the processing tool, and to get the data, a direct connection between Colab and BigQuery was made using its native integration.
+To accomplish the analysis, some additional ETL processes were build, all of them written in Python. Google Colab was used as the processing tool, and to access the data, a direct connection between Colab and BigQuery was established using its native integration.
 
-> 📘 **_Google Colab_ was chosen because of its easy connection between notebooks and BigQuery, being the latter where the data is.**
+> 📘 **_Google Colab_ was chosen because of its easy connection between notebooks and BigQuery, with the latter being where the data is.**
 
-Below are the notebooks used to do the data analysis:
+Below are the notebooks that were used to perform the data analysis:
 
 - [Home teams win more frequently](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/readme-file/Win_frequency_in_home_matches.ipynb)
 - [Home teams receive fewer cards](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Average_of_cards_in_home_team_matches.ipynb)
@@ -140,18 +132,18 @@ Below are the notebooks used to do the data analysis:
 - [The matches of the second turn have more events (goals and cards) than the matches of the first](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Events_frequency_along_the_turns_.ipynb)
 
 
-⏩ There is a conclusion of the analysis by the end of each notebook
+⏩ At the end of each notebook, there is a conclusion for the analysis.
 
 <br>
 
-Besides the hypothesis mentioned before, also was proposed the following discussion:
-> 📢 Is there a pattern about when (during the game) each winning team scores? Does the landscape change when the winner is the home team?
+In addition to the hypotheses mentioned earlier, the following discussion was also proposed:
+> 📢 Is there a pattern regarding when each team scores during the game?
 > 
 > 🔎 [notebook with the analysis](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Goal_scoring_distribution_by_team.ipynb)
 >
 > As an output of this discussion, the following chart shows the goals score distribution throughout the match by team in 2014.
 > 
-> ![](./assets/goal_score_distribuition.png)
+ ![](./assets/goal_score_distribuition.png)
 > *goals score distribution throughout the match by team in 2014*
 
 <br>
