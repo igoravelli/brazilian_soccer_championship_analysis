@@ -30,7 +30,7 @@ In the second step, our objective was to build a data warehouse architecture and
 The marts and their relationships can be better visualized in the image. Also, it's possible to get more information about the columns of each table.
 
 ![](./assets/datamodel_picture.png)
-*Entity Relationship Diagram (ERD) of brasileirao_championship data model*
+<p style="text-align: center;"><em>Entity Relationship Diagram (ERD) of brasileirao_championship data model.</em></p>
 
 Additionally, the ETL process as well as the final tables will be presented in detail in the following sections.
 
@@ -50,7 +50,7 @@ For data storage and the execution of all transformation steps, the BigQuery pla
 Below, the solution architecture is presented, which includes all the steps and platforms that were used in the project's development. The image also illustrates the final step involving Google Colab, which will be further explained in Section 3 (*Data Analysis and Visualization*) of this document.
 
 ![](./assets/solution_architecture.jpg)
-*Solution Architecture Overview*
+<p style="text-align: center;"><em>Solution Architecture Overview.</em></p>
 
 As a closing note in this theme, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
 
@@ -143,8 +143,8 @@ In addition to the hypotheses mentioned earlier, the following discussion was al
 >
 > As an output of this discussion, the following chart shows the goals score distribution throughout the match by team in 2021.
 > 
- ![](./assets/goal_score_distribuition.jpg)
-> *goals score distribution throughout the match by team in 2021*
+![](./assets/goal_score_distribuition.jpg)
+<p style="text-align: center;"><em>Goals score distribution throughout the match by team in 2021.</em></p>
 
 <br>
 
