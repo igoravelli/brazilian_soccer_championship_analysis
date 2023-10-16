@@ -141,10 +141,10 @@ In addition to the hypotheses mentioned earlier, the following discussion was al
 > 
 > 🔎 [notebook with the analysis](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Goal_scoring_distribution_by_team.ipynb)
 >
-> As an output of this discussion, the following chart shows the goals score distribution throughout the match by team in 2014.
+> As an output of this discussion, the following chart shows the goals score distribution throughout the match by team in 2021.
 > 
- ![](./assets/goal_score_distribuition.png)
-> *goals score distribution throughout the match by team in 2014*
+ ![](./assets/goal_score_distribuition.jpg)
+> *goals score distribution throughout the match by team in 2021*
 
 <br>
 
