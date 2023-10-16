@@ -11,7 +11,6 @@ The project was divided into 3 steps:
 
 <br>
 
-
 # 1. Data Selection <br>
 The first step consisted of selecting the datasets to be used in the project. The ones we chose are available [here](https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol).
 After the dataset was selected, it was loaded into Google Sheets for a preliminary verification of data quality and to ensure uniform formatting.
@@ -55,6 +54,7 @@ Below, the solution architecture is presented, which includes all the steps and 
 
 As a closing note in this theme, all the queries written for the data transformation process and data warehouse construction can be found in this [repository folder](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/DW-Queries).
 
+<br>
 
 ### Data model
 As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tables that are related to each other through a star schema modeling across 3 data marts. Subsequently, a detailed explanation of each table stored in the gold layer will follow.
@@ -76,6 +76,8 @@ As mentioned earlier, the model consists of 3 fact tables and 5 dimensional tabl
 🏅 `factScore`: The third fact table stores the final league position and score, as well as the number of wins separated by home and away matches or each team.
 
 [Here](https://github.com/igoravelli/brazilian_soccer_championship_analysis/tree/readme-file/assets/tables-samples), some samples of the tables mentioned above have been stored to provide a better understanding of the final result and the structure of the data warehouse.
+
+<br>
 
 ### Slowly Changing Dimensions (SCD)
 
@@ -102,9 +104,7 @@ Given the possibility to hold all the historical data, as well as the appliance 
 
 🏃🏽‍♂️ `dimPlayer`: In this table, the time reference was also the match ID, and the data source was mainly the silver layer tables. The historical informations that can be found includes the player's specific jersey number, position, and club in a given match.
 
-
 <br>
-
 
 # 3. Data Analysis and Visualization
 In the third phase of the project, the data analysis itself was conducted using the previously created data model.
