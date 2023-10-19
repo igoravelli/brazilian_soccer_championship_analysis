@@ -126,7 +126,7 @@ To accomplish the analysis, some additional ETL processes were build, all of the
 
 Below are the notebooks that were used to perform the data analysis:
 
-- [Home teams win more frequently](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/readme-file/Win_frequency_in_home_matches.ipynb)
+- [Home teams win more frequently](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Win_frequency_in_home_matches.ipynb)
 - [Home teams receive fewer cards](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Average_of_cards_in_home_team_matches.ipynb)
 - [Teams with an expelled player in the first half have more chance to lose the game](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Number_of_matches_with_expelled_players.ipynb)
 - [Champions teams have more pass accuracy](https://github.com/igoravelli/brazilian_soccer_championship_analysis/blob/main/Teams_accuracy_pass.ipynb)
